@@ -378,3 +378,16 @@ impl<'ctx> TryFrom<AnyTypeEnum<'ctx>> for BasicTypeEnum<'ctx> {
         })
     }
 }
+
+impl<'ctx> From<BasicTypeEnum<'ctx>> for AnyTypeEnum<'ctx> {
+    fn from(value: BasicTypeEnum<'ctx>) -> Self {
+        match value {
+            BasicTypeEnum::ArrayType(t) => t.into(),
+            BasicTypeEnum::FloatType(t) => t.into(),
+            BasicTypeEnum::IntType(t) => t.into(),
+            BasicTypeEnum::PointerType(t) => t.into(),
+            BasicTypeEnum::StructType(t) => t.into(),
+            BasicTypeEnum::VectorType(t) => t.into(),
+        }
+    }
+}
